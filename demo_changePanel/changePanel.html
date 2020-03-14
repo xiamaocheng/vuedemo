@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
+</head>
+<body>
+
+
+<form id="main" v-cloak>
+ 
+    <div class="bar">
+ 
+        <!-- 两个按钮用于切换不同的列表布局 -->
+ 
+        <a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+        <a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
+    </div>
+ 
+    <!-- 我们设置了两套布局页面。使用哪套依赖于 "layout" 绑定 -->
+ 
+    <ul v-if="layout == 'grid'" class="grid">
+        <!-- 使用大图，没有文本 -->
+        <li v-for="a in articles">
+            <a v-bind:href="a.url" target="_blank" rel="noopener noreferrer"><img v-bind:src="a.image.large" /></a>
+        </li>
+    </ul>
+ 
+    <ul v-if="layout == 'list'" class="list">
+        <!-- 使用小图及标题 -->
+        <li v-for="a in articles">
+            <a v-bind:href="a.url" target="_blank" rel="noopener noreferrer"><img v-bind:src="a.image.small" /></a>
+            <p>{{a.title}}</p>
+        </li>
+    </ul>
+ 
+</form>
+<script>
+ 
+    var demo = new Vue({
+        el: '#main',
+        data: {
+            // 视图模型，可能的值是 "grid" 或 "list"。
+            layout: 'grid',
+ 
+            articles: [{
+                "title": "HTML 教程",
+                "url": "https://www.runoob.com/html/html-tutorial.html",
+                "image": {
+                    "large": "https://static.runoob.com/images/mix/htmlbig.png",
+                    "small": "https://static.runoob.com/images/icon/html.png"
+                }
+            },
+            {
+                "title": "CSS 教程",
+                "url": "https://www.runoob.com/css/css-tutorial.html",
+                "image": {
+                    "large": "https://static.runoob.com/images/mix/cssbig.png",
+                    "small": "https://static.runoob.com/images/icon/css.png"
+                }
+            },
+            {
+                "title": "JS 教程",
+                "url": "https://www.runoob.com/js/js-tutorial.html",
+                "image": {
+                    "large": "https://static.runoob.com/images/mix/jsbig.jpeg",
+                    "small": "https://static.runoob.com/images/icon/js.png"
+                }
+            },
+            {
+                "title": "SQL  教程",
+                "url": "https://www.runoob.com/sql/sql-tutorial.html",
+                "image": {
+                    "large": "https://static.runoob.com/images/mix/sqlbig.png",
+                    "small": "https://static.runoob.com/images/icon/sql.png"
+                }
+            },
+            {
+                "title": "Ajax 教程",
+                "url": "https://www.runoob.com/ajax/ajax-tutorial.html",
+                "image": {
+                    "large": "https://static.runoob.com/images/mix/ajaxbig.png",
+                    "small": "https://static.runoob.com/images/icon/ajax.png"
+                }
+            },
+            {
+                "title": "Python 教程",
+                "url": "https://www.runoob.com/pyhton/pyhton-tutorial.html",
+                "image": {
+                    "large": "https://static.runoob.com/images/mix/pythonbig.png",
+                    "small": "https://static.runoob.com/images/icon/python.png"
+                }
+            }]
+ 
+        }
+    });
+    
+</script>
+
+</body>
+
+
+
+
+</html>
